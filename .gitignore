@@ -1,0 +1,19 @@
+# Compilation et dépendances Maven
+target/
+
+# Configuration locale IntelliJ
+.idea/
+*.iml
+out/
+
+# Fichiers temporaires système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Mots de passe et secrets locaux
+application-local.properties
+application-local.yml
+.env
