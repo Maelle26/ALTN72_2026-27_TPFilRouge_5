@@ -1,5 +1,5 @@
 # Journal de bord
-## Projet Supervision d’équipements et suivi d’incidents
+## Projet RailWatch - Supervision d’équipements et suivi d’incidents
 
 ### Modèle de données
 Voici la 1ère version du diagramme de classe avec les principales entités et de leurs relations :
@@ -15,6 +15,7 @@ Voici la 1ère version du diagramme de classe avec les principales entités et d
 
 #### Séance n°1 - 12/10/2026
 - Création du dépôt GitHub pour le projet
+- 
 ##### Séance n°2 - 14/10/2026
 - Début de la conception du modèle de données et du diagramme de classes
 - Création de la BD (MySQL Workbench) et des tables principales

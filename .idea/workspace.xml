@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Suppression du dossier target">
-      <change afterPath="$PROJECT_DIR$/docs/diagClasse_v1.png" afterDir="false" />
+    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Ajout de la v1 du diagramme de classe et MAJ journal">
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Equipement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Evaluation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Incident.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Prestataire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Profil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Station.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Statut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/journal.md" beforeDir="false" afterPath="$PROJECT_DIR$/journal.md" afterDir="false" />
     </list>
@@ -17,6 +27,7 @@
   <component name="DatabaseLocalColorSettings">
     <colors>
       <entry key="23a49601-4d8f-4857-8251-e6b25e3001b3" value="" />
+      <entry key="368b2c83-7efd-4cc0-9815-7e69007270a1" value="" />
     </colors>
   </component>
   <component name="EmbeddingIndexingInfo">
@@ -27,6 +38,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -62,60 +74,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.000071716534235" />
-      <entry key="S5" value="1.0295075064718586" />
-      <entry key="S10" value="1.2744397327296293" />
-      <entry key="S30" value="3.540719830479289" />
-      <entry key="S60" value="8.439538092884852" />
-      <entry key="M2" value="17.802741255573114" />
-      <entry key="M5" value="34.789199403927356" />
-      <entry key="M10" value="46.43700970312387" />
-      <entry key="M15" value="51.643120604532776" />
-      <entry key="M30" value="57.760388636190804" />
-      <entry key="H1" value="61.2245915444794" />
-      <entry key="H2" value="63.07126789081676" />
-      <entry key="H4" value="64.02509633305027" />
-      <entry key="D1" value="64.83602795564997" />
-      <entry key="W1" value="64.97653865394608" />
+      <entry key="MS500" value="1.0000078345075831" />
+      <entry key="S2" value="1.0591141822860546" />
+      <entry key="S5" value="1.441353407851759" />
+      <entry key="S10" value="1.9695062144341624" />
+      <entry key="S30" value="3.327241666556951" />
+      <entry key="S60" value="4.792040382230086" />
+      <entry key="M2" value="7.045390809545771" />
+      <entry key="M5" value="11.775600329545652" />
+      <entry key="M10" value="21.31887886279674" />
+      <entry key="M15" value="32.64865962291802" />
+      <entry key="M30" value="58.80135537967395" />
+      <entry key="H1" value="83.42227080447454" />
+      <entry key="H2" value="100.53765172977575" />
+      <entry key="H4" value="110.66001692081744" />
+      <entry key="D1" value="120.01923175080157" />
+      <entry key="W1" value="121.71472422948915" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="MS100" value="1.1202504838874069E-225" />
+      <entry key="MS500" value="1.0229703071976248E-45" />
+      <entry key="S2" value="5.656137178451842E-12" />
+      <entry key="S5" value="3.259657743551144E-5" />
+      <entry key="S10" value="0.006744816493602212" />
+      <entry key="S30" value="0.36768432518134403" />
+      <entry key="S60" value="1.3741035106171025" />
+      <entry key="M2" value="3.254513187351489" />
+      <entry key="M5" value="6.728178782429311" />
+      <entry key="M10" value="9.348111914222502" />
+      <entry key="M15" value="10.594460904753825" />
+      <entry key="M30" value="12.117847006992541" />
+      <entry key="H1" value="13.007996078700538" />
+      <entry key="H2" value="13.49040579772725" />
+      <entry key="H4" value="13.741690288438587" />
+      <entry key="D1" value="13.95645045092122" />
+      <entry key="W1" value="13.993766307951173" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9265880618903709" />
-      <entry key="MS500" value="0.9848664428955506" />
-      <entry key="S2" value="0.996266315936776" />
-      <entry key="S5" value="1.0279256578517346" />
-      <entry key="S10" value="1.2734131427244424" />
-      <entry key="S30" value="3.539702415074833" />
-      <entry key="S60" value="8.438236699669417" />
-      <entry key="M2" value="17.800636245849468" />
-      <entry key="M5" value="34.78510507274481" />
-      <entry key="M10" value="46.43289443708178" />
-      <entry key="M15" value="51.63960888097203" />
-      <entry key="M30" value="57.75812775191327" />
-      <entry key="H1" value="61.22330619478471" />
-      <entry key="H2" value="63.07058227138286" />
-      <entry key="H4" value="64.02474221453716" />
-      <entry key="D1" value="64.83596731436086" />
-      <entry key="W1" value="64.97652995051455" />
+      <entry key="MS100" value="0.7320428479728127" />
+      <entry key="MS500" value="0.9395304219689059" />
+      <entry key="S2" value="1.0426860625405057" />
+      <entry key="S5" value="1.4277174237198589" />
+      <entry key="S10" value="1.9501507816931085" />
+      <entry key="S30" value="3.623808282081343" />
+      <entry key="S60" value="6.086881269218161" />
+      <entry key="M2" value="10.227323921396202" />
+      <entry key="M5" value="18.449233252480354" />
+      <entry key="M10" value="30.629035750051806" />
+      <entry key="M15" value="43.21392128879191" />
+      <entry key="M30" value="70.90172887688627" />
+      <entry key="H1" value="96.42048612516591" />
+      <entry key="H2" value="114.02284004279255" />
+      <entry key="H4" value="124.39900592370446" />
+      <entry key="D1" value="133.97521807078093" />
+      <entry key="W1" value="135.7084238771897" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -256,6 +268,7 @@
     <MESSAGE value="Dev Full Stack Java / 2026-27&#10;Corrigé TP 1-2" />
     <MESSAGE value="Dev Full Stack Java - 2026-27&#10;Corrigé TP 3-4" />
     <MESSAGE value="Suppression du dossier target" />
-    <option name="LAST_COMMIT_MESSAGE" value="Suppression du dossier target" />
+    <MESSAGE value="Ajout de la v1 du diagramme de classe et MAJ journal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la v1 du diagramme de classe et MAJ journal" />
   </component>
 </project>
