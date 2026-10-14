@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
+    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Suppression du dossier target">
+      <change afterPath="$PROJECT_DIR$/docs/diagClasse_v1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/altn72/tpfilrouge/TpFilRougeApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/altn72/tpfilrouge/controleur/ProgrammeurControleur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/altn72/tpfilrouge/modele/Programmeur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/altn72/tpfilrouge/modele/ProgrammeurRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/altn72/tpfilrouge/service/ProgrammeurService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/detailsProgrammeur.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/listeProgrammeurs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/nouveauProgrammeur.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/journal.md" beforeDir="false" afterPath="$PROJECT_DIR$/journal.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +18,9 @@
     <colors>
       <entry key="23a49601-4d8f-4857-8251-e6b25e3001b3" value="" />
     </colors>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="43" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -69,21 +63,21 @@
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.00000044091381" />
-      <entry key="S5" value="1.0028690722214373" />
-      <entry key="S10" value="1.0535637320559275" />
-      <entry key="S30" value="1.3810087559663178" />
-      <entry key="S60" value="1.7470150863901925" />
-      <entry key="M2" value="2.587130548316191" />
-      <entry key="M5" value="4.305798610787685" />
-      <entry key="M10" value="5.413824367157619" />
-      <entry key="M15" value="5.8804254480607625" />
-      <entry key="M30" value="6.4065356511725104" />
-      <entry key="H1" value="6.6943190172781755" />
-      <entry key="H2" value="6.844852439605157" />
-      <entry key="H4" value="6.921840478568103" />
-      <entry key="D1" value="6.98689128700495" />
-      <entry key="W1" value="6.99812530530404" />
+      <entry key="S2" value="1.000071716534235" />
+      <entry key="S5" value="1.0295075064718586" />
+      <entry key="S10" value="1.2744397327296293" />
+      <entry key="S30" value="3.540719830479289" />
+      <entry key="S60" value="8.439538092884852" />
+      <entry key="M2" value="17.802741255573114" />
+      <entry key="M5" value="34.789199403927356" />
+      <entry key="M10" value="46.43700970312387" />
+      <entry key="M15" value="51.643120604532776" />
+      <entry key="M30" value="57.760388636190804" />
+      <entry key="H1" value="61.2245915444794" />
+      <entry key="H2" value="63.07126789081676" />
+      <entry key="H4" value="64.02509633305027" />
+      <entry key="D1" value="64.83602795564997" />
+      <entry key="W1" value="64.97653865394608" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -105,23 +99,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="4.3100732240754615E-4" />
-      <entry key="MS500" value="0.21227406161170992" />
-      <entry key="S2" value="0.6787729296330337" />
-      <entry key="S5" value="0.8592915953386355" />
-      <entry key="S10" value="0.9789667463563637" />
-      <entry key="S30" value="1.3551828304951585" />
-      <entry key="S60" value="1.731298945346585" />
-      <entry key="M2" value="2.574002296172322" />
-      <entry key="M5" value="4.296453086788511" />
-      <entry key="M10" value="5.407922868202482" />
-      <entry key="M15" value="5.876156518169885" />
-      <entry key="M30" value="6.404215654846446" />
-      <entry key="H1" value="6.693108910676722" />
-      <entry key="H2" value="6.844234364665954" />
-      <entry key="H4" value="6.921528121981779" />
-      <entry key="D1" value="6.9868387610880776" />
-      <entry key="W1" value="6.998117790105185" />
+      <entry key="MS100" value="0.9265880618903709" />
+      <entry key="MS500" value="0.9848664428955506" />
+      <entry key="S2" value="0.996266315936776" />
+      <entry key="S5" value="1.0279256578517346" />
+      <entry key="S10" value="1.2734131427244424" />
+      <entry key="S30" value="3.539702415074833" />
+      <entry key="S60" value="8.438236699669417" />
+      <entry key="M2" value="17.800636245849468" />
+      <entry key="M5" value="34.78510507274481" />
+      <entry key="M10" value="46.43289443708178" />
+      <entry key="M15" value="51.63960888097203" />
+      <entry key="M30" value="57.75812775191327" />
+      <entry key="H1" value="61.22330619478471" />
+      <entry key="H2" value="63.07058227138286" />
+      <entry key="H4" value="64.02474221453716" />
+      <entry key="D1" value="64.83596731436086" />
+      <entry key="W1" value="64.97652995051455" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -133,50 +127,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.generated-requests | #10.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #11.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #14.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #9.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TpFilRougeApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;P:/MES COURS/Developpement Full Stack avec Java/ALTN72 - 2026_2027/DEV_CODE/GitHub/TpFilRouge_CORRIGE_5&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #11.executor": "Run",
+    "HTTP Request.generated-requests | #14.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.TpFilRougeApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/maell/Documents/ÉCOLE/EFREI Paris/ING_2/Semestre_7/S7_Java FullStack/ALTN72_2026-27_TPFilRouge_5/docs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "to.speed.mode.migration.done": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;,
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\maell\Documents\ÉCOLE\EFREI Paris\ING_2\Semestre_7\S7_Java FullStack\ALTN72_2026-27_TPFilRouge_5\docs" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="TpFilRougeApplication" />
@@ -256,6 +255,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dev Full Stack Java / 2026-27&#10;Corrigé TP 1-2" />
     <MESSAGE value="Dev Full Stack Java - 2026-27&#10;Corrigé TP 3-4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dev Full Stack Java - 2026-27&#10;Corrigé TP 3-4" />
+    <MESSAGE value="Suppression du dossier target" />
+    <option name="LAST_COMMIT_MESSAGE" value="Suppression du dossier target" />
   </component>
 </project>
