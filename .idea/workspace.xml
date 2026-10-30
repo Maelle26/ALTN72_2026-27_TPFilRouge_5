@@ -4,18 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Suppression Programmeur du projet">
-      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/exception/RegleMetierException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/EtatFonctionnement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/TypeEquipement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/IncidentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
+    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/journal.md" beforeDir="false" afterPath="$PROJECT_DIR$/journal.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/exception/RegleMetierException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/exception/RegleMetierException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Equipement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Equipement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/EquipementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/EquipementRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Evaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Evaluation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/EvaluationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/EvaluationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Incident.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Incident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/IncidentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/PrestataireRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/PrestataireRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/StationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/StationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/UtilisateurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/UtilisateurRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/IncidentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/IncidentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,61 +75,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0000000000053537" />
-      <entry key="M2" value="1.0000058335618784" />
-      <entry key="M5" value="1.0568480592422507" />
-      <entry key="M10" value="2.644881373656008" />
-      <entry key="M15" value="6.962630332544777" />
-      <entry key="M30" value="27.205415574504638" />
-      <entry key="H1" value="61.07337912319824" />
-      <entry key="H2" value="94.0056807614524" />
-      <entry key="H4" value="117.33404168568028" />
-      <entry key="D1" value="141.54449619931628" />
-      <entry key="W1" value="146.2070741857881" />
+      <entry key="MS100" value="1.0000001529962919" />
+      <entry key="MS500" value="1.044543678414179" />
+      <entry key="S2" value="1.6423634011675432" />
+      <entry key="S5" value="2.2409880083104277" />
+      <entry key="S10" value="2.569163180222389" />
+      <entry key="S30" value="2.842985472371785" />
+      <entry key="S60" value="2.919676691100948" />
+      <entry key="M2" value="2.9617689381536207" />
+      <entry key="M5" value="3.119338600087573" />
+      <entry key="M10" value="3.52082583241882" />
+      <entry key="M15" value="3.9568660885979208" />
+      <entry key="M30" value="8.222505448311605" />
+      <entry key="H1" value="27.86236670937146" />
+      <entry key="H2" value="62.80802511337418" />
+      <entry key="H4" value="97.07109697256138" />
+      <entry key="D1" value="140.94686768923833" />
+      <entry key="W1" value="150.3668930694931" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="2.4467494599819638E-137" />
-      <entry key="S10" value="6.901053665307956E-69" />
-      <entry key="S30" value="3.0267541793368554E-23" />
-      <entry key="S60" value="8.132411893286096E-12" />
-      <entry key="M2" value="4.600461653519805E-6" />
-      <entry key="M5" value="0.01879277497441935" />
-      <entry key="M10" value="0.45863026402487334" />
-      <entry key="M15" value="1.4602961219196888" />
-      <entry key="M30" value="4.875340956261189" />
-      <entry key="H1" value="9.0574661161875" />
-      <entry key="H2" value="12.39344333439377" />
-      <entry key="H4" value="14.510719928635842" />
-      <entry key="D1" value="16.556589297696316" />
-      <entry key="W1" value="16.935918740842954" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="8.877533996029979E-220" />
+      <entry key="S30" value="1.5279276749590334E-73" />
+      <entry key="S60" value="5.778061899459113E-37" />
+      <entry key="M2" value="1.2262607472638867E-18" />
+      <entry key="M5" value="1.7551065143479453E-7" />
+      <entry key="M10" value="0.0014015835505256783" />
+      <entry key="M15" value="0.030752360238023017" />
+      <entry key="M30" value="0.7074956177852332" />
+      <entry key="H1" value="3.450373410880567" />
+      <entry key="H2" value="7.64929967668663" />
+      <entry key="H4" value="11.399972533448452" />
+      <entry key="D1" value="15.904011582435775" />
+      <entry key="W1" value="16.83890615646874" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8585654364377537" />
-      <entry key="MS500" value="0.9699619103417348" />
-      <entry key="S2" value="0.9924043746858185" />
-      <entry key="S5" value="0.9969547984662518" />
-      <entry key="S10" value="0.9984762383082793" />
-      <entry key="S30" value="0.99949182123418" />
-      <entry key="S60" value="0.9997458783414176" />
-      <entry key="M2" value="0.9998832906951398" />
-      <entry key="M5" value="1.0754446043913188" />
-      <entry key="M10" value="3.1015981362771416" />
-      <entry key="M15" value="8.41881275680868" />
-      <entry key="M30" value="32.0736328007627" />
-      <entry key="H1" value="70.12399113518943" />
-      <entry key="H2" value="106.39431946884977" />
-      <entry key="H4" value="131.84190850603844" />
-      <entry key="D1" value="158.10053578768412" />
-      <entry key="W1" value="163.14291240766715" />
+      <entry key="MS100" value="0.913831589076466" />
+      <entry key="MS500" value="1.0258238439982312" />
+      <entry key="S2" value="1.6346305487813777" />
+      <entry key="S5" value="2.236640050627567" />
+      <entry key="S10" value="2.566641574213968" />
+      <entry key="S30" value="2.842047807054585" />
+      <entry key="S60" value="2.919194226340443" />
+      <entry key="M2" value="2.961524003020223" />
+      <entry key="M5" value="3.1192360926509037" />
+      <entry key="M10" value="3.5221645221540827" />
+      <entry key="M15" value="3.987490917831645" />
+      <entry key="M30" value="8.928944601897197" />
+      <entry key="H1" value="31.310116979571124" />
+      <entry key="H2" value="70.45435305852806" />
+      <entry key="H4" value="108.4688248278366" />
+      <entry key="D1" value="156.85035068547106" />
+      <entry key="W1" value="167.20571909033305" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -137,50 +141,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.generated-requests | #10.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #11.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #14.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #9.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TpFilRougeApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/maell/Documents/ÉCOLE/EFREI Paris/ING_2/Semestre_7/S7_Java FullStack/ALTN72_2026-27_TPFilRouge_5/docs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #11.executor": "Run",
+    "HTTP Request.generated-requests | #14.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "Maven.TpFilRouge [compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.TpFilRougeApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/maell/Documents/ÉCOLE/EFREI Paris/ING_2/Semestre_7/S7_Java FullStack/ALTN72_2026-27_TPFilRouge_5/docs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "to.speed.mode.migration.done": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;,
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\maell\Documents\ÉCOLE\EFREI Paris\ING_2\Semestre_7\S7_Java FullStack\ALTN72_2026-27_TPFilRouge_5\docs" />
@@ -269,6 +274,7 @@
     <MESSAGE value="Ajout de la v1 du diagramme de classe et MAJ journal" />
     <MESSAGE value="Ajout des entités et leurs interfaces" />
     <MESSAGE value="Suppression Programmeur du projet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Suppression Programmeur du projet" />
+    <MESSAGE value="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités" />
   </component>
 </project>

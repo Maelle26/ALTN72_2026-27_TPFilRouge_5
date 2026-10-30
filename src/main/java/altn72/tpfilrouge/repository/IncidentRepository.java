@@ -5,20 +5,18 @@ import altn72.tpfilrouge.modele.Statut;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface IncidentRepository extends JpaRepository<Incident, Long> {
+public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 
-    // 1. Requête dérivée : incidents actifs (non résolus) pour le Dashboard (RG6)
+    // Requête dérivée : incidents actifs (non résolus) pour le tableau de bord (RG6)
     List<Incident> findByStatutNot(Statut statut);
 
-    // 2. Requête dérivée : historique des incidents résolus, du plus récent au plus ancien (RG7)
-    List<Incident> findByStatutOrderByDateHeureResolDesc(Statut statut);
+    // Requête dérivée : historique des incidents résolus, du plus récent au plus ancien (RG7)
+    List<Incident> findByStatutOrderByDateHeureResolutionDesc(Statut statut);
 
-    // 3. Requête JPQL : historique des incidents d'un équipement donné (F3, RG7)
-    @Query("SELECT i FROM Incident i WHERE i.equipement.id = :equipementId ORDER BY i.dateHeureOuv DESC")
-    List<Incident> findIncidentsByEquipementOrderByDateHeureOuvDesc(@Param("equipementId") Long equipementId);
+    // Requête JPQL : incidents d'un équipement, triés par date d'ouverture (F3, RG7)
+    @Query("SELECT i FROM Incident i WHERE i.equipement.id = :idEquipement ORDER BY i.dateHeureOuverture DESC")
+    List<Incident> findIncidentsDeLEquipement(@Param("idEquipement") Integer idEquipement);
 }

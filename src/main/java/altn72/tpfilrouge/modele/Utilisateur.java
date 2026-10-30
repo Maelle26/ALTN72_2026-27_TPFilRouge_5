@@ -13,7 +13,7 @@ public class Utilisateur {
     @Column(name = "login", nullable = false, unique = true, length = 50)
     private String login;
 
-    // Hash BCrypt (60 caractères) : le mot de passe n'est jamais stocké en clair
+    // Jamais stocké en clair
     @Column(name = "mot_de_passe_hache", nullable = false, length = 100)
     private String motDePasseHache;
 
@@ -25,7 +25,6 @@ public class Utilisateur {
     private Profil profil;
 
     protected Utilisateur() {
-        // Constructeur requis par JPA
     }
 
     public Utilisateur(String login, String motDePasseHache, String prenom, Profil profil) {

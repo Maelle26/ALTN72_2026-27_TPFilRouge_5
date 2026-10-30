@@ -25,6 +25,7 @@ public class Equipement {
     @Column(name = "etat_fonctionnement", nullable = false, length = 30)
     private EtatFonctionnement etatFonctionnement;
 
+    // RG9 : un équipement est rattaché à une station
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_station", nullable = false)
     private Station station;

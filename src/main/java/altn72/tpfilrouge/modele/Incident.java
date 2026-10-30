@@ -13,6 +13,7 @@ public class Incident {
     @Column(name = "id_incident", nullable = false)
     private Integer id;
 
+    // RG1 : un incident est rattaché à un équipement
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_equipement", nullable = false)
     private Equipement equipement;
@@ -27,6 +28,7 @@ public class Incident {
     @Column(name = "statut", nullable = false, length = 20)
     private Statut statut;
 
+    // RG5 : un incident peut être affecté à un prestataire, mais pas obligatoire
     @ManyToOne
     @JoinColumn(name = "id_prestataire")
     private Prestataire prestataire;
@@ -34,11 +36,11 @@ public class Incident {
     @Column(name = "date_heure_resolution")
     private LocalDateTime dateHeureResolution;
 
+    // RG8 : un incident peut avoir une évaluation, mais pas obligatoire
     @OneToOne(mappedBy = "incident")
     private Evaluation evaluation;
 
     protected Incident() {
-        // Constructeur requis par JPA
     }
 
     // RG1 : un incident est rattaché à un équipement, a une date d'ouverture et démarre sans prestataire

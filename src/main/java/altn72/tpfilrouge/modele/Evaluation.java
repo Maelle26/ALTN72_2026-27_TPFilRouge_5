@@ -16,7 +16,7 @@ public class Evaluation {
     @Column(name = "id_evaluation", nullable = false)
     private Integer id;
 
-    // RG8 : une seule évaluation par incident (unique = true)
+    // RG8 : une seule évaluation par incident
     @OneToOne(optional = false)
     @JoinColumn(name = "id_incident", nullable = false, unique = true)
     private Incident incident;
