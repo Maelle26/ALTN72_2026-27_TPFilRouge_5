@@ -1,0 +1,4 @@
+# Copier ce fichier en "application-local.properties" (à la racine du projet) et adapter les valeurs.
+# application-local.properties est ignoré par Git : les identifiants ne sont jamais versionnés.
+spring.datasource.username=root
+spring.datasource.password=VOTRE_MOT_DE_PASSE

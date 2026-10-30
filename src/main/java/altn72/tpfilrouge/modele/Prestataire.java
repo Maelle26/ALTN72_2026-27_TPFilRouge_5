@@ -19,28 +19,26 @@ public class Prestataire {
     @Column(name = "numero_telephone", length = 15)
     private String numeroTelephone;
 
-    public Integer getId() {
-        return id;
+    protected Prestataire() {
+        // Constructeur requis par JPA
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Prestataire(String nom, String prenom, String numeroTelephone) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numeroTelephone = numeroTelephone;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getPrenom() {
         return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public String getNumeroTelephone() {

@@ -10,22 +10,22 @@ public class Station {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nom", nullable = false, length = 100)
+    @Column(name = "nom", nullable = false, unique = true, length = 100)
     private String nom;
+
+    protected Station() {
+        // Constructeur requis par JPA
+    }
+
+    public Station(String nom) {
+        this.nom = nom;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 }

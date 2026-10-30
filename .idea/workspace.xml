@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/journal.md" beforeDir="false" afterPath="$PROJECT_DIR$/journal.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/exception/RegleMetierException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/exception/RegleMetierException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Equipement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Equipement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/EquipementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/EquipementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Evaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Evaluation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/EvaluationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/EvaluationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Incident.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Incident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/IncidentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/PrestataireRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/PrestataireRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/StationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/StationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Utilisateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/UtilisateurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/UtilisateurRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/IncidentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/repository/IncidentRepository.java" afterDir="false" />
+    <list default="true" id="5d4d2069-84fe-43dc-9f5f-c7b177d8855a" name="Changes" comment="Correction des repositories et mise à jour du journal (README, séance 3)">
+      <change afterPath="$PROJECT_DIR$/application-local.properties.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/create.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/config/DonneesDemonstration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/config/HorlogeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Prestataire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Prestataire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/altn72/tpfilrouge/modele/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,61 +68,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000001529962919" />
-      <entry key="MS500" value="1.044543678414179" />
-      <entry key="S2" value="1.6423634011675432" />
-      <entry key="S5" value="2.2409880083104277" />
-      <entry key="S10" value="2.569163180222389" />
-      <entry key="S30" value="2.842985472371785" />
-      <entry key="S60" value="2.919676691100948" />
-      <entry key="M2" value="2.9617689381536207" />
-      <entry key="M5" value="3.119338600087573" />
-      <entry key="M10" value="3.52082583241882" />
-      <entry key="M15" value="3.9568660885979208" />
-      <entry key="M30" value="8.222505448311605" />
-      <entry key="H1" value="27.86236670937146" />
-      <entry key="H2" value="62.80802511337418" />
-      <entry key="H4" value="97.07109697256138" />
-      <entry key="D1" value="140.94686768923833" />
-      <entry key="W1" value="150.3668930694931" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000010188155" />
+      <entry key="S60" value="1.0000552707336616" />
+      <entry key="M2" value="1.0128863940514774" />
+      <entry key="M5" value="1.3544007340518105" />
+      <entry key="M10" value="2.186753684303219" />
+      <entry key="M15" value="2.9164406928021185" />
+      <entry key="M30" value="6.7223732975079304" />
+      <entry key="H1" value="24.24363310834915" />
+      <entry key="H2" value="58.3664720012511" />
+      <entry key="H4" value="93.77082941949259" />
+      <entry key="D1" value="140.8864597453253" />
+      <entry key="W1" value="151.20475823744715" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="8.877533996029979E-220" />
-      <entry key="S30" value="1.5279276749590334E-73" />
-      <entry key="S60" value="5.778061899459113E-37" />
-      <entry key="M2" value="1.2262607472638867E-18" />
-      <entry key="M5" value="1.7551065143479453E-7" />
-      <entry key="M10" value="0.0014015835505256783" />
-      <entry key="M15" value="0.030752360238023017" />
-      <entry key="M30" value="0.7074956177852332" />
-      <entry key="H1" value="3.450373410880567" />
-      <entry key="H2" value="7.64929967668663" />
-      <entry key="H4" value="11.399972533448452" />
-      <entry key="D1" value="15.904011582435775" />
-      <entry key="W1" value="16.83890615646874" />
+      <entry key="S10" value="4.0855934091642566E-248" />
+      <entry key="S30" value="5.475499335838211E-83" />
+      <entry key="S60" value="1.0938119323240905E-41" />
+      <entry key="M2" value="5.335351787757159E-21" />
+      <entry key="M5" value="1.994047831186277E-8" />
+      <entry key="M10" value="4.7242735699380483E-4" />
+      <entry key="M15" value="0.014894381877032452" />
+      <entry key="M30" value="0.4923747459661967" />
+      <entry key="H1" value="2.8784063638906976" />
+      <entry key="H2" value="6.986580694739642" />
+      <entry key="H4" value="10.89495164133552" />
+      <entry key="D1" value="15.784358407458642" />
+      <entry key="W1" value="16.82074941221617" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.913831589076466" />
-      <entry key="MS500" value="1.0258238439982312" />
-      <entry key="S2" value="1.6346305487813777" />
-      <entry key="S5" value="2.236640050627567" />
-      <entry key="S10" value="2.566641574213968" />
-      <entry key="S30" value="2.842047807054585" />
-      <entry key="S60" value="2.919194226340443" />
-      <entry key="M2" value="2.961524003020223" />
-      <entry key="M5" value="3.1192360926509037" />
-      <entry key="M10" value="3.5221645221540827" />
-      <entry key="M15" value="3.987490917831645" />
-      <entry key="M30" value="8.928944601897197" />
-      <entry key="H1" value="31.310116979571124" />
-      <entry key="H2" value="70.45435305852806" />
-      <entry key="H4" value="108.4688248278366" />
-      <entry key="D1" value="156.85035068547106" />
-      <entry key="W1" value="167.20571909033305" />
+      <entry key="MS100" value="0.9460576467255959" />
+      <entry key="MS500" value="0.9889709163809315" />
+      <entry key="S2" value="0.9972312513520695" />
+      <entry key="S5" value="0.9988915792636801" />
+      <entry key="S10" value="0.9994456359721023" />
+      <entry key="S30" value="0.9998151788520515" />
+      <entry key="S60" value="0.9999628462468837" />
+      <entry key="M2" value="1.012839119616048" />
+      <entry key="M5" value="1.3543706040113945" />
+      <entry key="M10" value="2.1871956703201105" />
+      <entry key="M15" value="2.931267145920161" />
+      <entry key="M30" value="7.21400972676271" />
+      <entry key="H1" value="27.11984962823487" />
+      <entry key="H2" value="65.35033765876591" />
+      <entry key="H4" value="104.66363543723149" />
+      <entry key="D1" value="156.6702934791971" />
+      <entry key="W1" value="168.0254275912731" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -275,6 +268,7 @@
     <MESSAGE value="Ajout des entités et leurs interfaces" />
     <MESSAGE value="Suppression Programmeur du projet" />
     <MESSAGE value="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modèle : relations JPA, dates LocalDateTime et règles métier dans les entités" />
+    <MESSAGE value="Correction des repositories et mise à jour du journal (README, séance 3)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction des repositories et mise à jour du journal (README, séance 3)" />
   </component>
 </project>
