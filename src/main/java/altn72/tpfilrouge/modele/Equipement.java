@@ -10,32 +10,42 @@ public class Equipement {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "reference", nullable = false, length = 100)
+    // RG9 : la référence d'un équipement est unique
+    @Column(name = "reference", nullable = false, unique = true, length = 50)
     private String reference;
 
     @Column(name = "libelle", nullable = false, length = 100)
     private String libelle;
 
-    @Column(name = "type", nullable = false, length = 100)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false, length = 30)
+    private TypeEquipement type;
 
-    @Column(name = "etatFonctionnement", nullable = false, length = 100)
-    private String etatFonctionnement; //Peut être ENUM
+    @Enumerated(EnumType.STRING)
+    @Column(name = "etat_fonctionnement", nullable = false, length = 30)
+    private EtatFonctionnement etatFonctionnement;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_station", nullable = false)
+    private Station station;
+
+    protected Equipement() {
+    }
+
+    public Equipement(String reference, String libelle, TypeEquipement type, Station station) {
+        this.reference = reference;
+        this.libelle = libelle;
+        this.type = type;
+        this.station = station;
+        this.etatFonctionnement = EtatFonctionnement.EN_SERVICE;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getReference() {
         return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
     }
 
     public String getLibelle() {
@@ -46,19 +56,19 @@ public class Equipement {
         this.libelle = libelle;
     }
 
-    public String getType() {
+    public TypeEquipement getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getEtatFonctionnement() {
+    public EtatFonctionnement getEtatFonctionnement() {
         return etatFonctionnement;
     }
 
-    public void setEtatFonctionnement(String etatFonctionnement) {
+    public void setEtatFonctionnement(EtatFonctionnement etatFonctionnement) {
         this.etatFonctionnement = etatFonctionnement;
+    }
+
+    public Station getStation() {
+        return station;
     }
 }
