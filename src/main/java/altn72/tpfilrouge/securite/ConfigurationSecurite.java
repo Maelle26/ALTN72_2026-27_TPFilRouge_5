@@ -28,8 +28,8 @@ public class ConfigurationSecurite {
                         .requestMatchers("/connexion", "/css/**", "/error").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/tableau-de-bord/**").hasRole(RESPONSABLE)
-                        .requestMatchers("/incidents/*/affectation", "/incidents/*/resolution",
-                                "/incidents/*/evaluation").hasRole(RESPONSABLE)
+                        .requestMatchers("/incidents/*/modification", "/incidents/*/affectation",
+                                "/incidents/*/resolution", "/incidents/*/evaluation").hasRole(RESPONSABLE)
                         .requestMatchers(HttpMethod.PUT, "/api/incidents/*/prestataire").hasRole(RESPONSABLE)
                         .requestMatchers(HttpMethod.POST, "/api/incidents/*/resolution").hasRole(RESPONSABLE)
                         .anyRequest().authenticated())
@@ -38,6 +38,7 @@ public class ConfigurationSecurite {
                         .defaultSuccessUrl("/", true)
                         .failureUrl("/connexion?erreur"))
                 .logout(deconnexion -> deconnexion.logoutSuccessUrl("/connexion?deconnexion"))
+                .exceptionHandling(erreurs -> erreurs.accessDeniedPage("/acces-refuse"))
                 .httpBasic(Customizer.withDefaults())
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"));
         return http.build();

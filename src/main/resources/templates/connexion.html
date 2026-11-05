@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Connexion')}"></head>
+<body class="connexion-fond">
+<div class="logo"><span class="logo-carre"></span>RailWatch</div>
+<div class="sous-titre">Supervision des équipements de stations</div>
+<form class="carte connexion-carte" th:action="@{/connexion}" method="post">
+    <h2>Connexion</h2>
+    <div class="alerte alerte-erreur" th:if="${param.erreur}">Identifiant ou mot de passe incorrect.</div>
+    <div class="alerte alerte-succes" th:if="${param.deconnexion}">Vous avez été déconnecté.</div>
+    <label class="champ">Identifiant
+        <input type="text" name="username" autofocus required>
+    </label>
+    <label class="champ">Mot de passe
+        <input type="password" name="password" required>
+    </label>
+    <button class="bouton" type="submit">Se connecter</button>
+</form>
+</body>
+</html>

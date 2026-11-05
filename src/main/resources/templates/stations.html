@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Stations')}"></head>
+<body>
+<header th:replace="~{fragments/mise-en-page :: barre('stations')}"></header>
+<main class="corps">
+    <h1>Équipements par station</h1>
+    <p class="sous-titre">Choisissez une station pour consulter ses équipements.</p>
+    <div th:replace="~{fragments/mise-en-page :: messages}"></div>
+
+    <div class="stations">
+        <a class="station" th:each="station : ${stations}"
+           th:classappend="${station.id == stationChoisie} ? 'choisie'"
+           th:href="@{/stations(stationId=${station.id})}" th:text="${station.nom}">Gare Centrale</a>
+    </div>
+
+    <section class="carte" th:if="${equipements != null}">
+        <h2>Équipements de la station</h2>
+        <table th:if="${!equipements.isEmpty()}">
+            <thead><tr><th>Référence</th><th>Libellé</th><th>Type</th><th>État</th><th></th></tr></thead>
+            <tbody>
+            <tr th:each="equipement : ${equipements}">
+                <td th:text="${equipement.reference}">ASC-GC-01</td>
+                <td th:text="${equipement.libelle}">Ascenseur quai A</td>
+                <td th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(equipement.type.name(), '_', ' ')))}">Ascenseur</td>
+                <td><span th:replace="~{fragments/mise-en-page :: pastille-etat(${equipement.etatFonctionnement})}"></span></td>
+                <td><a th:href="@{/equipements/{id}(id=${equipement.id})}">Fiche ›</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="vide" th:if="${equipements.isEmpty()}">Aucun équipement dans cette station.</p>
+    </section>
+</main>
+</body>
+</html>

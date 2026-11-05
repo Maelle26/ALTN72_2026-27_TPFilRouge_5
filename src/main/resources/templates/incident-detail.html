@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Incident')}"></head>
+<body>
+<header th:replace="~{fragments/mise-en-page :: barre('stations')}"></header>
+<main class="corps">
+    <h1>Incident n°<span th:text="${incident.id}">4</span></h1>
+    <p class="sous-titre">
+        <a th:href="@{/equipements/{id}(id=${incident.equipement.id})}"
+           th:text="${incident.equipement.reference} + ' · ' + ${incident.equipement.libelle}">ASC-GC-01</a>
+        · Station <span th:text="${incident.equipement.station.nom}">Gare Centrale</span>
+    </p>
+    <div th:replace="~{fragments/mise-en-page :: messages}"></div>
+
+    <div class="ligne">
+        <section class="carte">
+            <h2>Détail</h2>
+            <p class="sous-titre">Statut</p>
+            <p><span th:replace="~{fragments/mise-en-page :: pastille-niveau(${niveau})}"></span></p><br>
+            <p class="sous-titre">Description</p>
+            <p th:text="${incident.description}">Description</p><br>
+            <p class="sous-titre">Ouvert le</p>
+            <p th:text="${#temporals.format(incident.dateHeureOuverture, 'dd/MM/yyyy HH:mm')}">01/11/2026 10:00</p><br>
+            <p class="sous-titre" th:text="${incident.estResolu()} ? 'Durée avant résolution' : 'Ouvert depuis'">Ouvert depuis</p>
+            <p><span th:text="${dureeHeures}">12</span> h</p><br>
+            <div th:if="${incident.estResolu()}">
+                <p class="sous-titre">Résolu le</p>
+                <p th:text="${#temporals.format(incident.dateHeureResolution, 'dd/MM/yyyy HH:mm')}">02/11/2026 09:00</p><br>
+            </div>
+            <p class="sous-titre">Prestataire</p>
+            <p th:if="${incident.prestataire != null}"
+               th:text="${incident.prestataire.nom} + ' ' + ${incident.prestataire.prenom} + ' · ' + ${incident.prestataire.numeroTelephone}">Elevatec</p>
+            <p class="vide" th:if="${incident.prestataire == null}">Aucun prestataire affecté</p><br>
+            <p class="sous-titre">Évaluation</p>
+            <p th:if="${incident.evaluation != null}">
+                <span class="etoiles" th:text="${incident.evaluation.note} + ' / 5'">4 / 5</span>
+                <span th:if="${incident.evaluation.commentaire != null}" th:text="' · ' + ${incident.evaluation.commentaire}"></span>
+            </p>
+            <p class="vide" th:if="${incident.evaluation == null}">Aucune évaluation</p>
+        </section>
+
+        <section class="carte" style="max-width: 400px;" th:if="${estResponsable and !incident.estResolu()}">
+            <h2>Actions</h2>
+            <form method="post" th:action="@{/incidents/{id}/affectation(id=${incident.id})}">
+                <label class="champ">
+                    <span th:text="${incident.estAffecte()} ? 'Réaffecter à' : 'Affecter à'">Affecter à</span>
+                    <select name="prestataireId" required>
+                        <option th:each="p : ${prestataires}" th:value="${p.id}" th:text="${p.nom}"
+                                th:selected="${incident.prestataire != null and incident.prestataire.id == p.id}">Elevatec</option>
+                    </select>
+                </label>
+                <button class="bouton bouton-orange" type="submit">Enregistrer l'affectation</button>
+            </form>
+            <br>
+            <form method="post" th:action="@{/incidents/{id}/modification(id=${incident.id})}">
+                <label class="champ">Modifier la description
+                    <textarea name="description" maxlength="255" th:text="${incident.description}" required></textarea>
+                </label>
+                <button class="bouton" type="submit">Enregistrer</button>
+            </form>
+            <br>
+            <form method="post" th:action="@{/incidents/{id}/resolution(id=${incident.id})}">
+                <button class="bouton bouton-vert" type="submit">Déclarer résolu</button>
+            </form>
+        </section>
+    </div>
+
+    <section class="carte" th:if="${estResponsable and incident.estEvaluable()}">
+        <h2>Évaluer l'intervention du prestataire</h2>
+        <form method="post" th:action="@{/incidents/{id}/evaluation(id=${incident.id})}">
+            <div class="ligne">
+                <label class="champ">Note
+                    <select name="note" required>
+                        <option value="5">5 · Excellent</option>
+                        <option value="4">4 · Bien</option>
+                        <option value="3">3 · Correct</option>
+                        <option value="2">2 · Insuffisant</option>
+                        <option value="1">1 · Mauvais</option>
+                    </select>
+                </label>
+                <label class="champ" style="flex: 1;">Commentaire (facultatif)
+                    <input type="text" name="commentaire" maxlength="500">
+                </label>
+            </div>
+            <button class="bouton bouton-rose" type="submit">Envoyer l'évaluation</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

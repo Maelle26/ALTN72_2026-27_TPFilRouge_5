@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Tableau de bord')}"></head>
+<body>
+<header th:replace="~{fragments/mise-en-page :: barre('tableau')}"></header>
+<main class="corps">
+    <h1>Tableau de bord des incidents actifs</h1>
+    <div th:replace="~{fragments/mise-en-page :: messages}"></div>
+
+    <div class="indicateurs">
+        <div class="indicateur i-total"><strong th:text="${indicateurs.total}">5</strong><span>Incidents actifs</span></div>
+        <div class="indicateur i-rouge"><strong th:text="${indicateurs.rouges}">1</strong><span>Rouge · 72 h et plus</span></div>
+        <div class="indicateur i-orange"><strong th:text="${indicateurs.oranges}">1</strong><span>Orange · 48 h à 72 h</span></div>
+        <div class="indicateur i-vert"><strong th:text="${indicateurs.verts}">1</strong><span>Vert · moins de 48 h</span></div>
+        <div class="indicateur i-pris"><strong th:text="${indicateurs.prisEnCharge}">2</strong><span>Pris en charge</span></div>
+    </div>
+
+    <form class="filtres" method="get" th:action="@{/tableau-de-bord}">
+        <label class="champ">Niveau
+            <select name="niveau">
+                <option value="">Tous</option>
+                <option th:each="n : ${niveaux}" th:value="${n}" th:text="${n.libelle}" th:selected="${n == niveauChoisi}">Rouge</option>
+            </select>
+        </label>
+        <label class="champ">Station
+            <select name="stationId">
+                <option value="">Toutes</option>
+                <option th:each="s : ${stations}" th:value="${s.id}" th:text="${s.nom}" th:selected="${s.id == stationChoisie}">Gare</option>
+            </select>
+        </label>
+        <button class="bouton" type="submit">Filtrer</button>
+        <a class="bouton bouton-gris" th:href="@{/tableau-de-bord}">Réinitialiser</a>
+    </form>
+
+    <section class="carte">
+        <table th:if="${!incidents.isEmpty()}">
+            <thead><tr><th>Niveau</th><th>Station</th><th>Équipement</th><th>Description</th><th>Ouvert depuis</th><th>Prestataire</th><th></th></tr></thead>
+            <tbody>
+            <tr th:each="actif : ${incidents}">
+                <td><span th:replace="~{fragments/mise-en-page :: pastille-niveau(${actif.niveau})}"></span></td>
+                <td th:text="${actif.incident.equipement.station.nom}">Gare Centrale</td>
+                <td th:text="${actif.incident.equipement.reference}">ASC-GC-01</td>
+                <td th:text="${actif.incident.description}">Panne</td>
+                <td><span th:text="${actif.dureeOuverture.toHours()}">12</span> h</td>
+                <td th:text="${actif.incident.prestataire != null} ? ${actif.incident.prestataire.nom} : '—'">—</td>
+                <td><a th:href="@{/incidents/{id}(id=${actif.incident.id})}">Détail ›</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="vide" th:if="${incidents.isEmpty()}">Aucun incident actif ne correspond à ces critères.</p>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:fragment="entete(titre)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titre} + ' · RailWatch'">RailWatch</title>
+    <link rel="stylesheet" th:href="@{/css/railwatch.css}">
+</head>
+<body>
+
+<header th:fragment="barre(actif)" class="barre-haut">
+    <a class="logo" th:href="@{/}"><span class="logo-carre"></span>RailWatch</a>
+    <nav class="navigation">
+        <a th:href="@{/stations}" th:classappend="${actif == 'stations'} ? 'actif'">Stations</a>
+        <a th:if="${estResponsable}" th:href="@{/tableau-de-bord}"
+           th:classappend="${actif == 'tableau'} ? 'actif'">Tableau de bord</a>
+        <a th:href="@{/historique}" th:classappend="${actif == 'historique'} ? 'actif'">Historique</a>
+    </nav>
+    <div class="utilisateur">
+        <span>Bonjour <strong th:text="${utilisateur.prenom}">Claire</strong>
+            (<span th:text="${utilisateur.profil.libelle}">Responsable d'exploitation</span>)</span>
+        <span>|</span>
+        <form th:action="@{/logout}" method="post" class="form-deconnexion">
+            <button type="submit" class="lien-deconnexion">Déconnectez-vous</button>
+        </form>
+    </div>
+</header>
+
+<div th:fragment="messages">
+    <div class="alerte alerte-succes" th:if="${message}" th:text="${message}"></div>
+    <div class="alerte alerte-erreur" th:if="${erreur}" th:text="${erreur}"></div>
+</div>
+
+<span th:fragment="pastille-niveau(niveau)" class="pastille"
+      th:classappend="${#strings.toLowerCase(niveau.name())}" th:text="${niveau.libelle}">Vert</span>
+
+<span th:fragment="pastille-etat(etat)" class="pastille"
+      th:classappend="${#strings.toLowerCase(etat.name())}"
+      th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(etat.name(), '_', ' ')))}">En service</span>
+
+</body>
+</html>

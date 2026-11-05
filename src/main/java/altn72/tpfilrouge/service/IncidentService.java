@@ -49,6 +49,10 @@ public class IncidentService {
         return incidentRepository.findIncidentsDeLEquipement(equipementId);
     }
 
+    public List<IncidentActif> listerParEquipementAvecNiveau(Integer equipementId) {
+        return listerParEquipement(equipementId).stream().map(this::enActif).toList();
+    }
+
     public List<Incident> historique() {
         return incidentRepository.findByStatutOrderByDateHeureResolutionDesc(Statut.RESOLU);
     }

@@ -1,18 +1,18 @@
 # Journal de bord — RailWatch (ALTN72, 2026-27)
 ## Projet RailWatch - Supervision d'équipements et suivi d'incidents
 
-**Groupe :** Maëlle BITSINDOU, Alexandre POISSONNEAU 
+**Groupe :** Maëlle BITSINDOU, Alexandre POISSONNEAU
 
 ## README
 
 - Prérequis : Java 21, MariaDB. Maven n'a pas besoin d'être installé : le projet contient le Maven Wrapper (`mvnw`).
-- Configuration : copier `application-local.properties.example` en `application-local.properties` (ignoré par Git) et renseigner l'identifiant et le mot de passe de la base. Les valeurs peuvent aussi venir des variables d'environnement `DB_URL`, `DB_USERNAME` et `DB_PASSWORD`.
+- Configuration : copier `application-local.properties.example` en `application-local.properties` (ignoré par Git) et renseigner l'identifiant et le mot de passe de sa propre base locale. Les valeurs peuvent aussi venir des variables d'environnement `DB_URL`, `DB_USERNAME` et `DB_PASSWORD`. Chaque personne qui clone le dépôt crée son propre fichier local : aucun secret n'est versionné ni partagé entre les membres du groupe.
 - Initialiser la base : `db/create.sql` crée la base `railwatch`. Les tables sont ensuite créées par Hibernate (`spring.jpa.hibernate.ddl-auto`, valeur `create` par défaut) et remplies au démarrage par `DonneesDemonstration` (`railwatch.donnees-demo=true`). Les dates des incidents sont calculées par rapport à l'instant de démarrage (2 h, 47 h, 48 h, 60 h, 72 h, 120 h…), donc les cas limites des indicateurs restent visibles quel que soit le jour.
 - Compiler : `./mvnw compile` (Linux, macOS, Git Bash) ou `mvnw.cmd compile` (Windows)
 - Lancer : `./mvnw spring-boot:run` puis ouvrir http://localhost:8080
 - Tests : `./mvnw verify`
 - Application déployée : **À COMPLÉTER**
-- Comptes de test : profil 1 `responsable` (Maëlle, responsable d'exploitation) ; profil 2 `agent` (Alexandre, agent de signalement). Mots de passe : **À COMPLÉTER** (ceux qui correspondent aux hash BCrypt de `DonneesDemonstration`).
+- Comptes de test : profil 1 `responsable` / `password` (Maëlle, responsable d'exploitation) ; profil 2 `agent` / `password` (Alexandre, agent de signalement).
 - Limites connues : **À COMPLÉTER en fin de projet**
 
 ## ARCHITECTURE
@@ -40,9 +40,9 @@ Relations principales :
 | `service` | Règles qui impliquent plusieurs entités : calcul du niveau d'attention (RG3, RG4), cycle de vie des incidents, évaluations, tableau de bord |
 | `securite` | Connexion, BCrypt, restrictions par profil (RG11) |
 | `api` | API REST (F12), DTO et gestion des exceptions de l'API |
+| `controleur` | Contrôleurs Thymeleaf : connexion, stations, équipements, incidents, tableau de bord, historique |
 | `exception` | Exceptions personnalisées (`RegleMetierException`, `RessourceIntrouvableException`) |
 | `config` | Configuration transverse (`HorlogeConfig`, `DonneesDemonstration`) |
-| Web (à venir) | Contrôleurs Thymeleaf et templates |
 
 ### Maquettes
 
@@ -61,12 +61,13 @@ Charte : violet pour la barre de navigation et les actions principales, turquois
 | 6. Tableau de bord des incidents actifs | F11 | Responsable seul |
 | 7. Historique des incidents résolus | F9, F10 | Les deux profils (lecture) |
 
-Le bandeau « Bonjour [Prénom] ([profil]) | Déconnectez-vous » est présent en haut à droite de chaque écran (F1).
+Le bandeau « Bonjour [Prénom] ([profil]) | Déconnectez-vous » est présent en haut à droite de chaque écran (F1). Le front Thymeleaf reprend cette charte (fichier `railwatch.css`).
 
 ## TESTS
 
 - Stratégie : tests unitaires de la couche métier, sans base de données. Une horloge fixe (`Clock.fixed`) est injectée pour tester les seuils horaires sans dépendre de l'heure réelle. Les repositories sont simulés avec Mockito.
-- Commande : `./mvnw verify`
+- Commande : `./mvnw verify` (ou `./mvnw test`)
+- Résultat actuel : `BUILD SUCCESS`, tous les tests passent.
 - Couvert :
   - RG3 : 47 h vert, 48 h pile orange, 71 h orange, 72 h pile rouge
   - RG4 : un incident affecté ne porte jamais vert, orange ou rouge (état « pris en charge »)
@@ -75,7 +76,7 @@ Le bandeau « Bonjour [Prénom] ([profil]) | Déconnectez-vous » est présent e
   - RG1 : un incident déclaré est ouvert, sans prestataire, à l'heure courante
   - Tableau de bord : filtre par niveau d'attention
   - Incident inexistant : exception de ressource introuvable (404 côté API)
-- Non couvert (pour l'instant) : tests d'intégration des repositories et des contrôleurs (MockMvc, `@DataJpaTest`) ; pages Thymeleaf. **À COMPLÉTER** avec le résultat réel de `./mvnw verify` et la couverture mesurée.
+- Non couvert (pour l'instant) : tests d'intégration des repositories et des contrôleurs (MockMvc, `@DataJpaTest`) ; pages Thymeleaf. **À COMPLÉTER** avec la couverture mesurée (JaCoCo).
 
 ## CHOIX TECHNIQUES
 
@@ -94,13 +95,13 @@ Profil 1 : **Responsable d'exploitation** · Profil 2 : **Agent de signalement**
 | F10 | Évaluer un prestataire | Accès complet | Interdit |
 | F11 | Tableau de bord | Accès complet | Interdit |
 
-Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (règles par URL et par méthode HTTP, RG11). Masquer un bouton dans l'interface n'est qu'un confort d'affichage, jamais la protection.
+Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (règles par URL et par méthode HTTP, RG11). Masquer un bouton dans l'interface n'est qu'un confort d'affichage, jamais la protection : le front masque aussi les actions non autorisées (attribut `estResponsable` injecté dans toutes les vues), mais toute tentative directe d'accès est bloquée par Spring Security et redirigée vers une page « Accès refusé ».
 
 ### Exceptions
 
 - Exceptions personnalisées avec messages en français : `RegleMetierException` (règle de gestion violée, levée par les entités) et `RessourceIntrouvableException` (identifiant inconnu, levée par les services).
 - Choix : **`@RestControllerAdvice`** pour l'API (`GestionnaireExceptionsApi`), plutôt que `ResponseStatusException` dans les contrôleurs. Les traductions exception → code HTTP (404 ressource inexistante, 422 règle de gestion violée, 400 requête invalide) sont centralisées à un seul endroit. Les entités et les services restent indépendants de HTTP.
-- Pour les pages web : un `@ControllerAdvice` affichera un message compréhensible, sans trace technique (`server.error.include-stacktrace=never` est déjà configuré). **À COMPLÉTER** après l'écriture des contrôleurs web.
+- Pour les pages web : un `@ControllerAdvice` dédié (`GestionnaireExceptionsWeb`) gère les mêmes exceptions différemment : une `RegleMetierException` redirige l'utilisateur vers la page d'où il vient avec un message d'erreur affiché en rouge (attribut flash), et une `RessourceIntrouvableException` affiche une page d'erreur sobre, sans trace technique (`server.error.include-stacktrace=never`).
 
 ### SOLID
 
@@ -138,6 +139,20 @@ Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (r
 - Fonctionnalités non réalisées et pourquoi : **À COMPLÉTER en fin de projet**
 - Trois points à retenir du cours et du projet : **À COMPLÉTER**
 
+## Répartition des tâches
+
+| Fonctionnalités | Personne en charge | Date de début | Statut |
+|-----------------|--------------------|---------------|--------|
+| Modèle de données et diagramme de classes | Maëlle | 14/10/2026 | Terminé |
+| Relations JPA et règles métier dans les entités | Maëlle | 30/10/2026 | Terminé |
+| Repositories et requêtes | Maëlle | 30/10/2026 | Terminé |
+| Services : niveau d'attention, incidents, évaluations | Maëlle | 05/11/2026 | Terminé, testé |
+| Sécurité (connexion, BCrypt, droits par profil) | Maëlle | 05/11/2026 | Terminé, testé |
+| API REST et Swagger | Maëlle | 05/11/2026 | Fait, à tester |
+| Maquettes Figma | Maëlle | 05/11/2026 | Terminé |
+| Front Thymeleaf | Maëlle | 05/11/2026 | Fait, à tester entièrement |
+| Déploiement | À définir | | À faire |
+| Lot alpha (2 fonctionnalités) | À définir | | À faire |
 
 ## Journal des séances
 
@@ -170,4 +185,7 @@ Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (r
 - Couche service : `CalculateurNiveauAttention` (seuils en constantes, horloge injectée), `IncidentService`, `EvaluationService`
 - Sécurité : connexion par formulaire, BCrypt, restrictions par profil côté serveur
 - API REST des incidents, documentée avec Swagger
-- Tests unitaires de la couche métier
+- Tests unitaires de la couche métier (`BUILD SUCCESS`)
+- Front Thymeleaf complet : connexion, stations, fiche équipement, déclaration, détail d'incident (affectation, résolution, évaluation), tableau de bord, historique
+- Gestion des erreurs côté pages web (`GestionnaireExceptionsWeb`)
+- Vérification de la connexion avec les deux profils de test

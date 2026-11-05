@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Accès refusé')}"></head>
+<body>
+<header th:replace="~{fragments/mise-en-page :: barre('')}"></header>
+<main class="corps">
+    <h1>Accès refusé</h1>
+    <div class="alerte alerte-erreur">Votre profil ne vous permet pas d'accéder à cette page ou d'effectuer cette action.</div>
+    <p><a th:href="@{/}">‹ Retour à l'accueil</a></p>
+</main>
+</body>
+</html>

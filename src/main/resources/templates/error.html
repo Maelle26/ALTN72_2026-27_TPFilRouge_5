@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="~{fragments/mise-en-page :: entete('Erreur')}"></head>
+<body>
+<main class="corps">
+    <h1>Oups, une erreur est survenue</h1>
+    <div class="alerte alerte-erreur"
+         th:text="${explication != null} ? ${explication} : 'La page demandée est introuvable ou une erreur est survenue. Réessayez dans un instant.'">Message</div>
+    <p><a th:href="@{/}">‹ Retour à l'accueil</a></p>
+</main>
+</body>
+</html>

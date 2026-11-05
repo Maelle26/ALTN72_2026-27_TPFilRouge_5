@@ -22,8 +22,8 @@ import java.util.List;
 public class DonneesDemonstration implements CommandLineRunner {
 
     // Hash BCrypt aucun mdp en clair
-    private static final String HASH_MOT_DE_PASSE_RESPONSABLE = "$2a$10$kanQq/ee353u14GBn4Qp/OQJyeeAQ6Nb7.BYMzxxmGm9F5EqTMOz.";
-    private static final String HASH_MOT_DE_PASSE_AGENT = "$2a$10$JtdBu0WWp1SpgZ1NnZgTgOIMpAtYYcuE26DvfCruvHv.Z1k986F4i";
+    private static final String HASH_MOT_DE_PASSE_RESPONSABLE = "$2b$10$X8fbVfvFnZaHk4pSZyPcmuGJV67y0DQU0JLrskr3FqEJ8kI9Jy0ZG";
+    private static final String HASH_MOT_DE_PASSE_AGENT = "$2b$10$X8fbVfvFnZaHk4pSZyPcmuGJV67y0DQU0JLrskr3FqEJ8kI9Jy0ZG";
 
     private final StationRepository stationRepository;
     private final EquipementRepository equipementRepository;
