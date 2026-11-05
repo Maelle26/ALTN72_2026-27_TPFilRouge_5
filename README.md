@@ -7,7 +7,5 @@ Projet réalisé par Maëlle BITSINDOU et Alexandre POISSONNEAU.
 - **Compiler :** `./mvnw compile` (Linux, macOS, Git Bash) ou `mvnw.cmd compile` (invite de commandes Windows)
 - **Lancer :** `./mvnw spring-boot:run` puis ouvrir http://localhost:8080
 - **Tests :** `./mvnw verify`
-- **Initialiser la base :** *à voir*
-- **Comptes de test :** *à voir*
-- **Application déployée :** *à voir*
+- **Application déployée :https://railwatch.spaece.fr/connexion
 
