@@ -1,10 +1,28 @@
-# Journal de bord
+# Journal de bord — RailWatch (ALTN72, 2026-27)
 ## Projet RailWatch - Supervision d'équipements et suivi d'incidents
 
-**Groupe :** Maëlle BITSINDOU, Alexandre POISSONNEAU
+**Groupe :** Maëlle BITSINDOU, Alexandre POISSONNEAU 
+
+## README
+
+- Prérequis : Java 21, MariaDB. Maven n'a pas besoin d'être installé : le projet contient le Maven Wrapper (`mvnw`).
+- Configuration : copier `application-local.properties.example` en `application-local.properties` (ignoré par Git) et renseigner l'identifiant et le mot de passe de la base. Les valeurs peuvent aussi venir des variables d'environnement `DB_URL`, `DB_USERNAME` et `DB_PASSWORD`.
+- Initialiser la base : `db/create.sql` crée la base `railwatch`. Les tables sont ensuite créées par Hibernate (`spring.jpa.hibernate.ddl-auto`, valeur `create` par défaut) et remplies au démarrage par `DonneesDemonstration` (`railwatch.donnees-demo=true`). Les dates des incidents sont calculées par rapport à l'instant de démarrage (2 h, 47 h, 48 h, 60 h, 72 h, 120 h…), donc les cas limites des indicateurs restent visibles quel que soit le jour.
+- Compiler : `./mvnw compile` (Linux, macOS, Git Bash) ou `mvnw.cmd compile` (Windows)
+- Lancer : `./mvnw spring-boot:run` puis ouvrir http://localhost:8080
+- Tests : `./mvnw verify`
+- Application déployée : **À COMPLÉTER**
+- Comptes de test : profil 1 `responsable` (Maëlle, responsable d'exploitation) ; profil 2 `agent` (Alexandre, agent de signalement). Mots de passe : **À COMPLÉTER** (ceux qui correspondent aux hash BCrypt de `DonneesDemonstration`).
+- Limites connues : **À COMPLÉTER en fin de projet**
+
+## ARCHITECTURE
+
+- Dépôt : https://github.com/Maelle26/ALTN72_Supervision_RailWatch
+- Schéma : **À COMPLÉTER** (schéma d'architecture à exporter en `docs/architecture.png`)
 
 ### Modèle de données
-Voici la 1ère version du diagramme de classe avec les principales entités et leurs relations :
+
+Voici la 1ère version du diagramme de classes avec les principales entités et leurs relations :
 ![Diagramme de classes](docs/diagClasse_v1.png)
 
 Relations principales :
@@ -13,20 +31,115 @@ Relations principales :
 - un **Incident** peut être affecté à un **Prestataire** et avoir au plus une **Évaluation**
 - un **Utilisateur** possède un **Profil** (Responsable d'exploitation ou Agent de signalement)
 
-### Schéma d'architecture du projet
-*A compléter*
+### Organisation des packages
 
-Organisation actuelle des packages :
-- `modele` : entités JPA et enums
-- `repository` : accès aux données (Spring Data JPA)
-- `exception` : exceptions personnalisées
+| Package | Rôle |
+|---|---|
+| `modele` | Entités JPA et énumérations (`Statut`, `NiveauAttention`, `TypeEquipement`, `EtatFonctionnement`, `Profil`). Les règles métier propres à une entité y vivent (RG1, RG5, RG8, RG9) |
+| `repository` | Accès aux données (Spring Data JPA) : requêtes dérivées, JPQL, une requête native |
+| `service` | Règles qui impliquent plusieurs entités : calcul du niveau d'attention (RG3, RG4), cycle de vie des incidents, évaluations, tableau de bord |
+| `securite` | Connexion, BCrypt, restrictions par profil (RG11) |
+| `api` | API REST (F12), DTO et gestion des exceptions de l'API |
+| `exception` | Exceptions personnalisées (`RegleMetierException`, `RessourceIntrouvableException`) |
+| `config` | Configuration transverse (`HorlogeConfig`, `DonneesDemonstration`) |
+| Web (à venir) | Contrôleurs Thymeleaf et templates |
 
-### Répartition des tâches
-| Fonctionnalités | Personne en charge | Date de début | Statut |
-|-----------------|--------------------|---------------|--------|
-| Modèle de données et diagramme de classes | Maëlle | 14/10/2026 | Terminé |
-| Relations JPA et règles métier dans les entités | Maëlle | 30/10/2026 | Terminé |
-| Repositories et requêtes | Maëlle | 30/10/2026 | En cours |
+### Maquettes
+
+Les maquettes ont été réalisées dans Figma avant le développement du front :
+https://www.figma.com/design/UoQ4ONwVs6sLtQbRdaSzZj
+
+Charte : violet pour la barre de navigation et les actions principales, turquoise, orange et rose pour les autres actions, et quatre pastilles d'état (vert, orange, rouge, bleu « pris en charge »).
+
+| Écran | Fonctionnalités | Accès |
+|---|---|---|
+| 1. Connexion | F1 | Tous |
+| 2. Équipements par station | F2 | Les deux profils |
+| 3. Fiche équipement et incidents | F3 | Les deux profils |
+| 4. Déclarer un incident | F4 | Les deux profils |
+| 5. Détail d'un incident (affecter, résoudre, évaluer) | F5, F7, F8, F10 | Consultation pour les deux profils, actions réservées au responsable |
+| 6. Tableau de bord des incidents actifs | F11 | Responsable seul |
+| 7. Historique des incidents résolus | F9, F10 | Les deux profils (lecture) |
+
+Le bandeau « Bonjour [Prénom] ([profil]) | Déconnectez-vous » est présent en haut à droite de chaque écran (F1).
+
+## TESTS
+
+- Stratégie : tests unitaires de la couche métier, sans base de données. Une horloge fixe (`Clock.fixed`) est injectée pour tester les seuils horaires sans dépendre de l'heure réelle. Les repositories sont simulés avec Mockito.
+- Commande : `./mvnw verify`
+- Couvert :
+  - RG3 : 47 h vert, 48 h pile orange, 71 h orange, 72 h pile rouge
+  - RG4 : un incident affecté ne porte jamais vert, orange ou rouge (état « pris en charge »)
+  - RG5 : un incident résolu ne peut plus être affecté ; résolution avec date et statut
+  - RG8 : évaluation refusée si l'incident n'est pas résolu, déjà évalué, ou si la note n'est pas entre 1 et 5
+  - RG1 : un incident déclaré est ouvert, sans prestataire, à l'heure courante
+  - Tableau de bord : filtre par niveau d'attention
+  - Incident inexistant : exception de ressource introuvable (404 côté API)
+- Non couvert (pour l'instant) : tests d'intégration des repositories et des contrôleurs (MockMvc, `@DataJpaTest`) ; pages Thymeleaf. **À COMPLÉTER** avec le résultat réel de `./mvnw verify` et la couverture mesurée.
+
+## CHOIX TECHNIQUES
+
+### Droits par profil
+
+Profil 1 : **Responsable d'exploitation** · Profil 2 : **Agent de signalement**
+
+| N° | Fonctionnalité | Responsable d'exploitation | Agent de signalement |
+|---|---|---|---|
+| F2–F3 | Consulter équipements et fiches | Accès complet | Accès complet |
+| F4 | Déclarer un incident | Accès complet | Accès complet |
+| F5–F6 | Consulter / modifier un incident | Accès complet (description modifiable tant que l'incident n'est pas résolu) | Lecture seule |
+| F7 | Affecter ou réaffecter un prestataire | Accès complet | Interdit |
+| F8 | Déclarer un incident résolu | Accès complet | Interdit |
+| F9 | Consulter l'historique | Accès complet | Lecture seule |
+| F10 | Évaluer un prestataire | Accès complet | Interdit |
+| F11 | Tableau de bord | Accès complet | Interdit |
+
+Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (règles par URL et par méthode HTTP, RG11). Masquer un bouton dans l'interface n'est qu'un confort d'affichage, jamais la protection.
+
+### Exceptions
+
+- Exceptions personnalisées avec messages en français : `RegleMetierException` (règle de gestion violée, levée par les entités) et `RessourceIntrouvableException` (identifiant inconnu, levée par les services).
+- Choix : **`@RestControllerAdvice`** pour l'API (`GestionnaireExceptionsApi`), plutôt que `ResponseStatusException` dans les contrôleurs. Les traductions exception → code HTTP (404 ressource inexistante, 422 règle de gestion violée, 400 requête invalide) sont centralisées à un seul endroit. Les entités et les services restent indépendants de HTTP.
+- Pour les pages web : un `@ControllerAdvice` affichera un message compréhensible, sans trace technique (`server.error.include-stacktrace=never` est déjà configuré). **À COMPLÉTER** après l'écriture des contrôleurs web.
+
+### SOLID
+
+- **Responsabilité unique (appliqué)** : chaque classe a une seule raison de changer. `CalculateurNiveauAttention` ne calcule que le niveau d'attention, avec les seuils de 48 h et 72 h en constantes nommées. Les règles d'une entité sont dans l'entité (`Incident.affecter`, `Incident.resoudre`, constructeur d'`Evaluation`). Les services orchestrent plusieurs entités et des repositories.
+- **Inversion des dépendances (appliqué)** : les services reçoivent leurs dépendances par le constructeur, dont l'horloge (`Clock`, bean défini dans `HorlogeConfig`). Les tests injectent une horloge fixe pour vérifier les seuils sans appeler `LocalDateTime.now()`.
+- Ouvert/fermé, substitution de Liskov, ségrégation des interfaces : **À COMPLÉTER** avec une justification honnête de leur non-pertinence dans ce projet (pas de hiérarchie de types ni d'interface volumineuse à substituer ou à découper).
+
+### Requête SQL native
+
+- Où : `EvaluationRepository.calculerNoteMoyenne` (note moyenne d'un prestataire, avec jointure entre `evaluation` et `incident`).
+- Analyse critique : **À COMPLÉTER**. Éléments à discuter : la requête native est liée au schéma (noms de colonnes `id_incident`, `id_prestataire`) et n'est pas vérifiée à la compilation ; moins portable que du JPQL ; en contrepartie, le calcul est fait par la base sans charger toutes les évaluations. Le même résultat est exprimable en JPQL (`select avg(e.note) …`). Elle est utilisée parce que le sujet impose une requête native.
+
+### @Transactional
+
+- Les services sont en `@Transactional(readOnly = true)` par défaut : ils ne font que lire.
+- Les méthodes qui modifient des données sont annotées `@Transactional` : `declarer`, `modifierDescription`, `affecter`, `resoudre` et `evaluer` (RG10 : toute erreur annule l'opération). `DonneesDemonstration.run` est aussi transactionnelle : tout ou rien.
+
+## LOT ALPHA
+
+### Fonctionnalité transverse 1 : Qualité renforcée (piste 7)
+
+- Besoin : détecter les régressions sur les règles de gestion.
+- Périmètre envisagé : tests unitaires (réalisés), tests d'intégration des repositories et des contrôleurs, mesure de la couverture (JaCoCo).
+- Choix et essais · ce qui fonctionne · difficultés · reste à faire : **À COMPLÉTER**
+
+### Fonctionnalité transverse 2 : **À CHOISIR**
+
+- Pistes envisagées : journal métier (piste 5) ou export CSV de l'historique (piste 9).
+- Besoin · périmètre envisagé · choix et essais · ce qui fonctionne · difficultés · reste à faire : **À COMPLÉTER**
+
+## BILAN
+
+- Contribution de chacun : **À COMPLÉTER honnêtement** (qui a réalisé quoi).
+- Plus grande difficulté et comment elle a été surmontée : **À COMPLÉTER**
+- Fonctionnalités non réalisées et pourquoi : **À COMPLÉTER en fin de projet**
+- Trois points à retenir du cours et du projet : **À COMPLÉTER**
+
+
+## Journal des séances
 
 ### Séance n°1 - 12/10/2026
 - Création du dépôt GitHub pour le projet
@@ -44,10 +157,17 @@ Organisation actuelle des packages :
 - Passage des dates de `String` à `LocalDateTime` pour pouvoir calculer la durée d'ouverture d'un incident
 - Création des enums `TypeEquipement` et `EtatFonctionnement`, stockés en texte en base (`@Enumerated(EnumType.STRING)`)
 - Règles métier placées dans les entités :
-    - RG1 : un incident démarre sans prestataire
-    - RG5 : un incident résolu ne peut plus être affecté ni modifié, la résolution ne peut pas précéder l'ouverture
-    - RG8 : une seule évaluation par incident, uniquement si l'incident est résolu et affecté, note de 1 à 5
-    - RG9 : référence d'équipement unique
+  - RG1 : un incident démarre sans prestataire
+  - RG5 : un incident résolu ne peut plus être affecté ni modifié, la résolution ne peut pas précéder l'ouverture
+  - RG8 : une seule évaluation par incident, uniquement si l'incident est résolu et affecté, note de 1 à 5
+  - RG9 : référence d'équipement unique
 - Création de l'exception personnalisée `RegleMetierException`
 - Correction de `IncidentRepository` (doublon, type de l'identifiant, noms des champs dans les requêtes)
 - Regroupement des repositories dans un package `repository` séparé du modèle
+
+### 05/11/2026
+- Maquettes Figma des 7 écrans (voir ARCHITECTURE)
+- Couche service : `CalculateurNiveauAttention` (seuils en constantes, horloge injectée), `IncidentService`, `EvaluationService`
+- Sécurité : connexion par formulaire, BCrypt, restrictions par profil côté serveur
+- API REST des incidents, documentée avec Swagger
+- Tests unitaires de la couche métier
