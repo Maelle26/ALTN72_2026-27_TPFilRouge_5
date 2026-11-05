@@ -1,4 +1,9 @@
 package altn72.tpfilrouge.modele;
 
-public class NiveauAttention {
+public enum NiveauAttention {
+    VERT,
+    ORANGE,
+    ROUGE,
+    PRIS_EN_CHARGE,
+    RESOLU
 }

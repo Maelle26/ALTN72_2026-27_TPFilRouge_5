@@ -2,6 +2,9 @@ package altn72.tpfilrouge.modele;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "equipement")
 public class Equipement {
@@ -29,6 +32,11 @@ public class Equipement {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_station", nullable = false)
     private Station station;
+
+
+    @OneToMany(mappedBy = "equipement")
+    @OrderBy("dateHeureOuverture DESC")
+    private List<Incident> incidents = new ArrayList<>();
 
     protected Equipement() {
     }
@@ -71,5 +79,9 @@ public class Equipement {
 
     public Station getStation() {
         return station;
+    }
+
+    public List<Incident> getIncidents() {
+        return incidents;
     }
 }
