@@ -76,7 +76,8 @@ Le bandeau « Bonjour [Prénom] ([profil]) | Déconnectez-vous » est présent e
   - RG1 : un incident déclaré est ouvert, sans prestataire, à l'heure courante
   - Tableau de bord : filtre par niveau d'attention
   - Incident inexistant : exception de ressource introuvable (404 côté API)
-- Non couvert (pour l'instant) : tests d'intégration des repositories et des contrôleurs (MockMvc, `@DataJpaTest`) ; pages Thymeleaf. **À COMPLÉTER** avec la couverture mesurée (JaCoCo).
+  - Export CSV de l'historique (`ExportControleurTest`, test d'intégration `@SpringBootTest`, appel HTTP réel via `java.net.http.HttpClient`) : réponse `200`, en-tête `Content-Disposition` de téléchargement et contenu CSV exact renvoyés par le contrôleur
+- Non couvert (pour l'instant) : tests `@DataJpaTest` sur les repositories ; pages Thymeleaf. **À COMPLÉTER** avec la couverture mesurée (JaCoCo).
 
 ## CHOIX TECHNIQUES
 
@@ -125,12 +126,19 @@ Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (r
 
 - Besoin : détecter les régressions sur les règles de gestion.
 - Périmètre envisagé : tests unitaires (réalisés), tests d'intégration des repositories et des contrôleurs, mesure de la couverture (JaCoCo).
-- Choix et essais · ce qui fonctionne · difficultés · reste à faire : **À COMPLÉTER**
+- Choix et essais : tests unitaires Mockito/AssertJ sur les services (`CalculateurNiveauAttentionTest`, `IncidentServiceTest`, `EvaluationServiceTest`), complétés par un test d'intégration `ExportControleurTest` qui démarre l'application complète (`@SpringBootTest`, comme `TpFilRougeApplicationTests`) et appelle réellement la route via le client HTTP du JDK (`java.net.http.HttpClient`) : il vérifie le dispatch HTTP réel (authentification, statut, en-têtes de réponse, corps exact du fichier téléchargé), au-delà des tests unitaires.
+- Ce qui fonctionne : les règles métier (RG3, RG5, RG8, RG10...) sont couvertes par les tests unitaires ; la route d'export est couverte par un test d'intégration qui vérifie l'authentification, le type de contenu et le corps de la réponse.
+- Difficultés : exécuter l'application réellement pour valider manuellement (MariaDB local, dialecte Hibernate) ; pas de mesure de couverture chiffrée faute de temps pour configurer JaCoCo.
+- Reste à faire : ajouter JaCoCo pour mesurer la couverture, et éventuellement un `@DataJpaTest` sur un repository.
 
-### Fonctionnalité transverse 2 : **À CHOISIR**
+### Fonctionnalité transverse 2 : Export CSV de l'historique (piste 9)
 
-- Pistes envisagées : journal métier (piste 5) ou export CSV de l'historique (piste 9).
-- Besoin · périmètre envisagé · choix et essais · ce qui fonctionne · difficultés · reste à faire : **À COMPLÉTER**
+- Besoin : permettre au responsable d'exploitation de récupérer l'historique des incidents résolus hors de l'application (tableur, archivage, reporting).
+- Périmètre envisagé : un bouton de téléchargement sur la page `/historique`, qui génère un fichier `.csv` avec une ligne par incident résolu (date de résolution, station, équipement, description, prestataire, durée en heures, note, commentaire).
+- Choix et essais : génération du CSV dans un service dédié (`ExportService`), séparé du contrôleur (`ExportControleur`, route `GET /historique/export`) pour rester testable sans servlet. Séparateur `;` choisi plutôt que `,` car Excel en version française utilise la virgule comme séparateur décimal, ce qui casserait l'alignement des colonnes avec un CSV séparé par des virgules. Un BOM UTF-8 est ajouté en tête de fichier pour que les accents s'affichent correctement à l'ouverture dans Excel. Les champs texte sont échappés (guillemets doublés) s'ils contiennent le séparateur, un guillemet ou un retour à la ligne.
+- Ce qui fonctionne : le bouton n'apparaît que si l'historique n'est pas vide ; la route réutilise `IncidentService.historique()` (même source de données que la page) ; un test d'intégration (`@SpringBootTest`, appel HTTP réel) vérifie l'en-tête `Content-Disposition` (téléchargement nommé), le type `text/csv` et le contenu du fichier.
+- Difficultés : choisir un format lisible à la fois par Excel français et par un parseur CSV standard (d'où le choix du séparateur `;` et du BOM).
+- Reste à faire : valider manuellement l'ouverture du fichier dans Excel/LibreOffice avec des données réelles.
 
 ## BILAN
 
@@ -152,7 +160,8 @@ Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (r
 | Maquettes Figma | Maëlle | 05/11/2026 | Terminé |
 | Front Thymeleaf | Maëlle | 05/11/2026 | Fait, à tester entièrement |
 | Déploiement | À définir | | À faire |
-| Lot alpha (2 fonctionnalités) | À définir | | À faire |
+| Lot alpha - Qualité renforcée (tests + intégration) | Maëlle | 05/11/2026 | Fait, à compléter (JaCoCo) |
+| Lot alpha - Export CSV (piste 9) | Maëlle | 05/11/2026 | Fait, à tester |
 
 ## Journal des séances
 
@@ -189,3 +198,4 @@ Les restrictions sont appliquées côté serveur dans `ConfigurationSecurite` (r
 - Front Thymeleaf complet : connexion, stations, fiche équipement, déclaration, détail d'incident (affectation, résolution, évaluation), tableau de bord, historique
 - Gestion des erreurs côté pages web (`GestionnaireExceptionsWeb`)
 - Vérification de la connexion avec les deux profils de test
+- Lot alpha, fonctionnalité 2 : export CSV de l'historique des incidents résolus (`ExportService`, `ExportControleur`, bouton sur la page historique), avec test d'intégration `@SpringBootTest`

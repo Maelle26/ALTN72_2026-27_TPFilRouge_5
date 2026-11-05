@@ -65,6 +65,13 @@
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Starter de test standard (JUnit, AssertJ, Mockito, MockMvc, TestRestTemplate...) :
+             les starters "éclatés" ci-dessus ne couvrent pas tout ce qu'il faut pour les tests d'intégration. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

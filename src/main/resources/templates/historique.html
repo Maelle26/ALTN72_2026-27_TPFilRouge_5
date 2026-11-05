@@ -8,6 +8,10 @@
     <p class="sous-titre">Du plus récent au plus ancien (date de résolution)</p>
     <div th:replace="~{fragments/mise-en-page :: messages}"></div>
 
+    <p th:if="${!incidents.isEmpty()}">
+        <a class="bouton bouton-turquoise" href="/historique/export">⬇ Télécharger l'historique (CSV)</a>
+    </p>
+
     <section class="carte">
         <table th:if="${!incidents.isEmpty()}">
             <thead><tr><th>Résolu le</th><th>Station</th><th>Équipement</th><th>Prestataire</th><th>Note</th><th></th></tr></thead>
