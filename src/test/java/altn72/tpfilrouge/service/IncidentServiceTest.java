@@ -40,6 +40,8 @@ class IncidentServiceTest {
     private EquipementRepository equipementRepository;
     @Mock
     private PrestataireRepository prestataireRepository;
+    @Mock
+    private DetecteurEquipementFragile detecteurFragile;
 
     private IncidentService service;
 
@@ -47,7 +49,7 @@ class IncidentServiceTest {
     void preparerService() {
         Clock horloge = Clock.fixed(MAINTENANT.toInstant(ZoneOffset.UTC), ZoneOffset.UTC);
         service = new IncidentService(incidentRepository, equipementRepository, prestataireRepository,
-                new CalculateurNiveauAttention(horloge), horloge);
+                new CalculateurNiveauAttention(horloge), detecteurFragile, horloge);
     }
 
     @Test

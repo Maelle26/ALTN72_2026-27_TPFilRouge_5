@@ -39,7 +39,10 @@
             <tr th:each="actif : ${incidents}">
                 <td><span th:replace="~{fragments/mise-en-page :: pastille-niveau(${actif.niveau})}"></span></td>
                 <td th:text="${actif.incident.equipement.station.nom}">Gare Centrale</td>
-                <td th:text="${actif.incident.equipement.reference}">ASC-GC-01</td>
+                <td>
+                    <span th:text="${actif.incident.equipement.reference}">ASC-GC-01</span>
+                    <span th:if="${actif.equipementFragile}" class="pastille fragile">Équipement fragile</span>
+                </td>
                 <td th:text="${actif.incident.description}">Panne</td>
                 <td><span th:text="${actif.dureeOuverture.toHours()}">12</span> h</td>
                 <td th:text="${actif.incident.prestataire != null} ? ${actif.incident.prestataire.nom} : '—'">—</td>

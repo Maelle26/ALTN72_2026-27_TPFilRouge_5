@@ -26,17 +26,20 @@ public class IncidentService {
     private final EquipementRepository equipementRepository;
     private final PrestataireRepository prestataireRepository;
     private final CalculateurNiveauAttention calculateur;
+    private final DetecteurEquipementFragile detecteurFragile;
     private final Clock horloge;
 
     public IncidentService(IncidentRepository incidentRepository,
                            EquipementRepository equipementRepository,
                            PrestataireRepository prestataireRepository,
                            CalculateurNiveauAttention calculateur,
+                           DetecteurEquipementFragile detecteurFragile,
                            Clock horloge) {
         this.incidentRepository = incidentRepository;
         this.equipementRepository = equipementRepository;
         this.prestataireRepository = prestataireRepository;
         this.calculateur = calculateur;
+        this.detecteurFragile = detecteurFragile;
         this.horloge = horloge;
     }
 
@@ -109,7 +112,8 @@ public class IncidentService {
     }
 
     private IncidentActif enActif(Incident incident) {
-        return new IncidentActif(incident, calculateur.calculer(incident), calculateur.dureeOuverture(incident));
+        return new IncidentActif(incident, calculateur.calculer(incident), calculateur.dureeOuverture(incident),
+                detecteurFragile.estFragile(incident.getEquipement()));
     }
 
     private boolean correspond(IncidentActif actif, FiltreIncidents filtre) {

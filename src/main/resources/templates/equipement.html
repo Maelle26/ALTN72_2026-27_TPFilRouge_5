@@ -4,7 +4,10 @@
 <body>
 <header th:replace="~{fragments/mise-en-page :: barre('stations')}"></header>
 <main class="corps">
-    <h1><span th:text="${equipement.reference}">ASC-GC-01</span> · <span th:text="${equipement.libelle}">Ascenseur</span></h1>
+    <h1>
+        <span th:text="${equipement.reference}">ASC-GC-01</span> · <span th:text="${equipement.libelle}">Ascenseur</span>
+        <span th:if="${fragile}" class="pastille fragile">Équipement fragile</span>
+    </h1>
     <p class="sous-titre">
         Station <span th:text="${equipement.station.nom}">Gare Centrale</span> ·
         Type <span th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(equipement.type.name(), '_', ' ')))}">Ascenseur</span>

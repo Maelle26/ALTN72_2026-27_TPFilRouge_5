@@ -91,6 +91,11 @@ public class DonneesDemonstration implements CommandLineRunner {
         Incident rouge72h = incidentOuvertIlYa(72, ascenseurRepublique, "Ascenseur bloqué au niveau -1");
         Incident rouge120h = incidentOuvertIlYa(120, portiqueHotelDeVille, "Portique bloqué en position ouverte");
 
+        // Évolution séance finale : 3 incidents sur portiqueGare en moins de 30 jours → équipement fragile
+        // (vert47h, déjà déclaré sur cet équipement, compte comme 1er incident).
+        Incident fragile2 = incidentOuvertIlYa(240, portiqueGare, "Nouvelle anomalie de lecture de carte");
+        Incident fragile3 = incidentOuvertIlYa(400, portiqueGare, "Blocage intermittent du portique");
+
         // Incidents affectés : ne portent pas d'indicateur vert/orange/rouge (RG4), même ouverts depuis longtemps
         Incident affecte30h = incidentOuvertIlYa(30, escalierGare, "Escalier mécanique à l'arrêt");
         affecte30h.affecter(mecaRail);
@@ -105,7 +110,8 @@ public class DonneesDemonstration implements CommandLineRunner {
         Incident resoluPortique = incidentResolu(60, 20, portiqueRepublique, "Lecteur de carte défaillant", billetiquePlus);
 
         incidentRepository.saveAll(List.of(vert2h, vert47h, orange48h, orange60h, rouge72h, rouge120h,
-                affecte30h, affecte90h, resoluAscenseur, resoluDistributeur, resoluEcran, resoluEscalier, resoluPortique));
+                fragile2, fragile3, affecte30h, affecte90h, resoluAscenseur, resoluDistributeur, resoluEcran,
+                resoluEscalier, resoluPortique));
 
         // resoluPortique reste volontairement sans évaluation, pour pouvoir tester F10 en démo
         LocalDate aujourdHui = LocalDate.now(horloge);

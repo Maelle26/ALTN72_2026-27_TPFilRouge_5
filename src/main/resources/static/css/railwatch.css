@@ -51,6 +51,7 @@ td { padding: 14px; border-bottom: 1px solid #EDE9FE; }
 .pastille.pris_en_charge, .pastille.affecte { background: #3B82F6; }
 .pastille.resolu { background: #9CA3AF; }
 .pastille.ouvert { background: #7C3AED; }
+.pastille.fragile { background: #881337; margin-left: 8px; font-size: 11px; vertical-align: middle; }
 
 .stations { display: flex; gap: 20px; flex-wrap: wrap; }
 .station { flex: 1; min-width: 200px; background: #fff; border-radius: 18px; padding: 22px; border-top: 8px solid #C4B5FD;

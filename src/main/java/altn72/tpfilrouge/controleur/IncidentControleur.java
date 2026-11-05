@@ -3,6 +3,7 @@ package altn72.tpfilrouge.controleur;
 import altn72.tpfilrouge.modele.Incident;
 import altn72.tpfilrouge.service.CalculateurNiveauAttention;
 import altn72.tpfilrouge.service.ConsultationService;
+import altn72.tpfilrouge.service.DetecteurEquipementFragile;
 import altn72.tpfilrouge.service.EvaluationService;
 import altn72.tpfilrouge.service.IncidentService;
 import org.springframework.stereotype.Controller;
@@ -20,15 +21,18 @@ public class IncidentControleur {
     private final EvaluationService evaluationService;
     private final ConsultationService consultationService;
     private final CalculateurNiveauAttention calculateur;
+    private final DetecteurEquipementFragile detecteurFragile;
 
     public IncidentControleur(IncidentService incidentService,
                               EvaluationService evaluationService,
                               ConsultationService consultationService,
-                              CalculateurNiveauAttention calculateur) {
+                              CalculateurNiveauAttention calculateur,
+                              DetecteurEquipementFragile detecteurFragile) {
         this.incidentService = incidentService;
         this.evaluationService = evaluationService;
         this.consultationService = consultationService;
         this.calculateur = calculateur;
+        this.detecteurFragile = detecteurFragile;
     }
 
     // F4
@@ -41,8 +45,13 @@ public class IncidentControleur {
     @PostMapping("/equipements/{equipementId}/incidents")
     public String declarer(@PathVariable Integer equipementId, @RequestParam String description,
                            RedirectAttributes redirection) {
-        incidentService.declarer(equipementId, description);
-        redirection.addFlashAttribute("message", "L'incident a bien été déclaré.");
+        Incident incident = incidentService.declarer(equipementId, description);
+        // Évolution séance finale : le message de confirmation mentionne "fragile" si, après
+        // cette déclaration, l'équipement l'est devenu (3 incidents ou plus sur 30 jours).
+        String message = detecteurFragile.estFragile(incident.getEquipement())
+                ? "L'incident a bien été déclaré. Attention, cet équipement est désormais fragile."
+                : "L'incident a bien été déclaré.";
+        redirection.addFlashAttribute("message", message);
         return "redirect:/equipements/" + equipementId;
     }
 
